@@ -51,6 +51,7 @@
   const nativeAttachShadow = Element.prototype.attachShadow;
   Element.prototype.attachShadow = function (init) {
     const shadowRoot = nativeAttachShadow.call(this, init);
+    if (this.tagName === 'SURVEY-PLUGIN-EMPLOYEE-BLOCK') injectInto(this); // <-- the fix: check the host itself
     scanAndWatch(shadowRoot);
     return shadowRoot;
   };
